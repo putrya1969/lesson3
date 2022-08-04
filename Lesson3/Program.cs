@@ -6,47 +6,38 @@ using System.Threading.Tasks;
 
 namespace Lesson3
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            string str = "qwe";
-            if (str == "qaz")
+            if (!CheckInput("X", out int X) || !CheckInput("Y", out int Y))
             {
-                Console.WriteLine("string equal qaz");
-            }
-            else 
-            {
-                Console.WriteLine("string not equal qaz");
+                Console.WriteLine("Invalid input");
+                Console.ReadKey();
+                return;
             }
 
-            switch (str)
+            if (X > Y)
             {
-                case "qaz":
-                    Console.WriteLine("string equal qaz");
-                    break;
-                default:
-                    Console.WriteLine("string not equal qaz");
-                    break;
+                int temp = X;
+                X = Y;
+                Y = temp;
             }
-            //int i = 1;
-            //int sum = 0;
-            //while (i <= 10 )
-            //{
-            //    sum += i;
-            //    i++;
-            //}
-            //Console.WriteLine(sum);
-            int i = 1;
+
             int sum = 0;
-            do
+            while (X <= Y)
             {
-                sum += i;
-                i++;
+                sum += X;
+                X++;
             }
-            while (i <= 10);
             Console.WriteLine(sum);
             Console.ReadKey();
+        }
+
+        static bool CheckInput(string variableName, out int arg)
+        {
+            Console.WriteLine($"Enter {variableName}:");
+            return int.TryParse(Console.ReadLine(), out arg);
         }
     }
 }
